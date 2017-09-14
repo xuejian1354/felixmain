@@ -1,5 +1,4 @@
-bin/
-bundle/
-conf/
+build/
 target/
 felix-cache/
+.settings/
