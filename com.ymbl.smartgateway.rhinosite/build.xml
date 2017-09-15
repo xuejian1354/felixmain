@@ -11,6 +11,7 @@
 
         <property name="src" value="${home}/src"/>
         <property name="lib" value="${main}/bundle"/>
+        <property name="ext" value="${main}/ext"/>
         <property name="build" value="${home}/build"/>
         <property name="classes" value="${build}/classes"/>
         <property name="baseclasses" value="${home}/classes"/>
@@ -66,10 +67,13 @@
     </target>
 
     <target name="jar" depends="compile">
+        <jar jarfile="${ext}/rt.jar"
+            basedir="${classes}"
+            includes="**/java/**" />
         <jar jarfile="${osgijar}">
-            <fileset dir="${classes}"/>
+            <fileset dir="${classes}" excludes="**/java/**"/>
             <fileset dir="${baseclasses}"/>
-            <fileset dir="${src}" excludes="**/*.java,**/package.html"/>
+            <fileset dir="${src}" excludes="**/java/**,**/*.java,**/package.html"/>
             <manifest>
                 <attribute name="Bundle-ManifestVersion" value="2"/>
                 <attribute name="Bundle-Name" value="Rhinosite"/>
