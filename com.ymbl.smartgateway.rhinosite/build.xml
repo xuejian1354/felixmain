@@ -46,6 +46,9 @@
             <arg line="-Dpackaging=felix install" />
         </exec>
         <exec executable="${mvn}" failonerror="true">
+            <arg line="-Dpackaging=http install" />
+        </exec>
+        <exec executable="${mvn}" failonerror="true">
             <arg line="-Dpackaging=rhino install" />
         </exec>
     </target>
