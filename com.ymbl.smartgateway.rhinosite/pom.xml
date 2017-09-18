@@ -48,19 +48,6 @@
    </profile>
 
     <profile>
-      <id>packaging-http</id>
-      <activation>
-        <property>
-          <name>packaging</name>
-          <value>http</value>
-        </property>
-      </activation>
-      <modules>
-        <module>../http</module>
-     </modules>
-   </profile>
-
-    <profile>
       <id>packaging-rhino</id>
       <activation>
         <property>

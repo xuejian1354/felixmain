@@ -24,7 +24,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URISyntaxException;
 import java.util.Enumeration;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -35,7 +34,7 @@ import org.ringojs.tools.launcher.Main;
 
 import com.ymbl.smartgateway.rhinosite.log.SystemLogger;
 
-public class RhinoActivator extends AbstractActivator{
+public class RhinoActivator extends AbstractActivator implements Runnable{
 
 	public final static String defaultHome = "/tmp/www";
 
@@ -43,7 +42,17 @@ public class RhinoActivator extends AbstractActivator{
 	protected void doStart() throws Exception {
 		// TODO Auto-generated method stub
 		SystemLogger.info("Plug for Rhino Engine start ...");
+        new Thread(this).start();
+	}
 
+	@Override
+	protected void doStop() throws Exception {
+		// TODO Auto-generated method stub
+		SystemLogger.info("Plug for Rhino Engine stop ...");
+	}
+
+	public void run() {
+		// TODO Auto-generated method stub
 		String ringoHome = defaultHome;
 		try {
 			ResourceBundle resource = ResourceBundle.getBundle("config");
@@ -54,20 +63,18 @@ public class RhinoActivator extends AbstractActivator{
 			SystemLogger.info("Ringo Home: " + ringoHome);
 		}
 
-		unZipFiles(ringoHome);
+		try {
+			unZipFiles(ringoHome);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		/* Start RingoJS Engine */
 		System.setProperty("ringo.home", ringoHome);
-
-        Main main = new Main();
+		Main main = new Main();
         main.run(new String[]{ringoHome + "/main.js"});
         SystemLogger.info("Enter the JS Dir \"" + ringoHome + "\"");
-	}
-
-	@Override
-	protected void doStop() throws Exception {
-		// TODO Auto-generated method stub
-		SystemLogger.info("Plug for Rhino Engine stop ...");
 	}
 
 	public void unZipFiles(String descDir) throws IOException {
