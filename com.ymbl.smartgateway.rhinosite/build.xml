@@ -54,7 +54,7 @@
         </exec>
     </target>
 
-    <target name="compile" depends="envjar">
+    <target name="compile" depends="init">
         <mkdir dir="${classes}"/>
         <javac srcdir="${src}"
             source="1.5"
@@ -85,7 +85,7 @@
                 <attribute name="Bundle-Activator" value="com.ymbl.smartgateway.rhinosite.RhinoActivator"/>
                 <attribute name="Bundle-Vendor" value="YMBL"/>
                 <attribute name="Bundle-RequiredExecutionEnvironment" value="J2SE-1.5"/>
-                <attribute name="Import-Package" value='javax.xml.parsers,org.mozilla.classfile;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.annotations;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.debug;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.json;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.tools;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.tools.debugger;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.tools.shell;version="1.1.1.7R4-SNAPSHOT",org.osgi.framework;version="1.5.0",org.osgi.service.log;version="1.3.0",org.w3c.dom,org.xml.sax,org.xml.sax.helpers'/>
+                <attribute name="Import-Package" value='javax.xml.parsers,org.h2;version="1.4.186",org.mozilla.classfile;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.annotations;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.debug;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.json;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.tools;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.tools.debugger;version="1.1.1.7R4-SNAPSHOT",org.mozilla.javascript.tools.shell;version="1.1.1.7R4-SNAPSHOT",org.osgi.framework;version="1.5.0",org.osgi.service.log;version="1.3.0",org.w3c.dom,org.xml.sax,org.xml.sax.helpers'/>
             </manifest>
         </jar>
     </target>
